@@ -1,0 +1,9 @@
+main:
+  - title: "Welcome"
+    url: /
+  - title: "Get Involved"
+    url: /get-involved
+  - title: "Working Groups"
+    url: /working-groups
+  - title: "Contact"
+    url: /contact

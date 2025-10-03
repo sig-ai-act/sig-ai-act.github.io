@@ -1,0 +1,43 @@
+title: SIG-TREQ
+description: Special Interest Group on Translating the EU AI Act into Technical Requirements
+url: ""        # e.g., https://tudelft.github.io
+baseurl: ""    # e.g., /sig-treq
+
+remote_theme: just-the-docs/just-the-docs
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Just-the-Docs options (now these make sense)
+nav_enabled: true
+logo: /assets/img/logo.png
+
+aux_links:
+  "SIG-TREQ on GitHub":
+    - "https://github.com/tudelft/sig-treq"
+nav_external_links:
+  - title: GitHub
+    url: https://github.com/tudelft/sig-treq
+  - title: Join the mailing list
+    url: sig-ai-act-request@lists.tudelft.nl
+
+collections:
+  working-groups:
+    output: true
+    permalink: /working-groups/:name
+
+exclude:
+  - vendor
+  - vendor/**
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - .github
+  - .bundle
+  - .jekyll-cache
+  - _site
