@@ -14,12 +14,8 @@ plugins:
 nav_enabled: true
 logo: /assets/img/logo.png
 
-aux_links:
-  "SIG-TREQ on GitHub":
-    - "https://github.com/tudelft/sig-treq"
+
 nav_external_links:
-  - title: GitHub
-    url: https://github.com/tudelft/sig-treq
   - title: Join the mailing list
     url: sig-ai-act-request@lists.tudelft.nl
 
