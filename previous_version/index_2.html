@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HealthIUI 2026 Workshop @ ACM IUI</title>
+  <meta name="description" content="HealthIUI 2026 — Workshop on Intelligent and Interactive Health User Interfaces co-located with ACM IUI 2026, Paphos, Cyprus." />
+  <link rel="canonical" href="https://healthiui.github.io/2026" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="HealthIUI 2026 Workshop @ ACM IUI" />
+  <meta property="og:description" content="On‑site workshop co‑located with ACM IUI 2026 in Paphos, Cyprus. CFP, dates, topics, program, venue." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://healthiui.github.io/2026/" />
+  <meta property="og:image" content="https://healthiui.github.io/2026/img/hero-healthbg_2.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  <!-- :root { --brand:#0ea5a4; --brand-2:#0b7f7e; } -->
+  :root {
+  --brand: #009688;   /* primary navbar button color (teal) */
+  --brand-2: #00796B; /* darker hover color */
+}
+
+  html { scroll-behavior:smooth; }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial; }
+  .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;}
+  .skip-link:focus{left:0;top:0;width:auto;height:auto;background:#000;color:#fff;padding:.5rem 1rem;z-index:2000;}
+  .hero { position:relative; color:#fff; min-height:50vh; display:grid; place-items:center; overflow:hidden; }
+  .hero::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35)), url('img/healthbg_2.png') center/cover no-repeat;  z-index: 0;}
+  .hero > .content { position:relative; z-index:1; }
+
+  .badge-aoe { background: var(--brand); }
+
+  .sticky-cta { position:sticky; top:0; z-index:1030; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+  .section-pad { padding: 4rem 0; }
+  .topic-card:hover { transform: translateY(-3px); transition: transform .2s ease; }
+  .muted { opacity:.85; }
+  .btn-brand { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .btn-brand:hover { background: var(--brand-2); border-color: var(--brand-2); color: #fff; }
+
+  /* --- NAVBAR: more prominent, green, and accessible --- */
+  .nav-link{ text-transform:uppercase; font-weight:600; letter-spacing:.02em; }
+
+  /* Make links visually bolder / larger and match the banner green */
+  .navbar { background: linear-gradient(180deg, rgba(14,165,164,0.04), transparent); }
+  .navbar-brand { color: var(--brand-2); font-weight:700; font-size:1.125rem; }
+
+  .navbar .navbar-nav .nav-link {
+    color: var(--brand);                 /* match banner green */
+    font-weight:700;
+    font-size: .95rem;                  /* slightly larger */
+    padding: .45rem .85rem;             /* button-like hit area */
+    border-radius: .375rem;             /* pill-like style */
+    margin: 0 .15rem;
+    transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease, color .12s ease;
+    background: transparent;
+    display: inline-block;
+  }
+
+  /* Hover / focus: fill with the brand color, white text for contrast */
+  .navbar .navbar-nav .nav-link:hover,
+  .navbar .navbar-nav .nav-link:focus {
+    background: var(--brand);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(14,165,164,0.12);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  /* Active state: stronger gradient + shadow */
+  .navbar .navbar-nav .nav-link.active,
+  .navbar .navbar-nav .nav-link[aria-current="page"] {
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    color:#fff;
+    box-shadow: 0 8px 22px rgba(11,127,126,0.16);
+  }
+
+  /* Mobile: full-width tappable items in collapsed menu */
+  @media (max-width: 991px) {
+    .navbar .navbar-nav { padding: .5rem 0; }
+    .navbar .navbar-nav .nav-link {
+      display: block;
+      width: 100%;
+      margin: .25rem 0;
+      padding: .6rem 1rem;
+      border-radius: .25rem;
+    }
+  }
+
+  /* subtle tweak to toggler to harmonize with green */
+  .navbar-toggler { border-color: rgba(14,165,164,0.18); }
+  .navbar-toggler:focus { box-shadow: 0 0 0 0.2rem rgba(14,165,164,0.12); }
+  /* height of your sticky navbar (tweak as needed) */
+:root { --nav-offset: 84px; }
+
+/* smooth scrolling is already on; add padding for anchor jumps */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset);
+}
+
+/* optional: smaller navbar on mobile → smaller offset */
+@media (max-width: 991.98px) {
+  :root { --nav-offset: 66px; }
+}
+
+</style>
+
+
+  <!-- JSON-LD: Event -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Event",
+    "name":"HealthIUI 2026 Workshop",
+    "eventStatus":"https://schema.org/EventScheduled",
+    "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+    "startDate":"2026-03-23T09:00:00+02:00",
+    "endDate":"2026-03-23T13:00:00+02:00",
+    "location":{
+      "@type":"Place",
+      "name":"ACM IUI 2026, Coral Beach Hotel & Resort",
+      "address":"Paphos, Cyprus"
+    },
+    "url":"https://healthiui.github.io/2026",
+    "image":"https://example.org/assets/hero-healthiui.jpg",
+    "description":"On-site workshop on Intelligent and Interactive Health User Interfaces, co‑located with ACM IUI 2026.",
+    "organizer":{"@type":"Organization","name":"HealthIUI"}
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to Content</a>
+
+<!-- Single header / navbar -->
+<nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom" data-bs-theme="light" aria-label="Primary">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+      <img src="img/icon.png" alt=""  height="60" class="brand-icon" />
+              <strong class="text-body">HealthIUI 2026</strong>
+    </a>
+
+    <div class="d-none d-lg-block small text-muted ms-2">
+      Co-located with
+      <a href="https://iui.acm.org/2026" class="link-secondary" target="_blank" rel="noopener">ACM IUI 2026</a>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#cfp">CFP</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dates">Dates</a></li>
+        <li class="nav-item"><a class="nav-link" href="#topics">Topics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pc">PC</a></li>
+        <li class="nav-item"><a class="nav-link" href="#venue">Venue</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="ms-lg-3 d-flex gap-2">
+        <a class="btn btn-sm btn-brand" href="#cfp">Submit paper</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="content container text-center">
+      <h1 class="display-5 fw-bold">HealthIUI 2026</h1>
+      <p class="lead mb-4">Workshop on Intelligent & Interactive Health User Interfaces</p>
+      <p class="small mb-4">Co-located with the 31th International ACM Conference on Intelligent User Interfaces (ACM IUI 2026) </p>
+
+      <div class="d-flex flex-wrap gap-2 justify-content-center">
+        <a class="btn btn-lg btn-outline-light" href="#cfp"><i class="bi bi-file-earmark-text me-1"></i> Call for Papers</a>
+        <a class="btn btn-lg btn-outline-light" href="#dates"><i class="bi bi-alarm me-1"></i> Important Dates</a>
+        <a class="btn btn-lg btn-outline-light" id="addToCalendarBtn" href="#"><i class="bi bi-calendar-plus me-1"></i> Add workshop to calendar</a>
+      </div>
+      <div class="mt-3">
+        <span class="badge rounded-pill text-bg-light text-dark me-2"><i class="bi bi-geo-alt me-1"></i> Coral Beach Hotel & Resort — Paphos, Cyprus</span>
+        <!-- <span class="badge rounded-pill text-bg-light text-dark"><i class="bi bi-people me-1"></i> On‑site only</span> -->
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- About -->
+    <section id="about" class="section-pad">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <h2 class="h1 mb-3">About the Workshop</h2>
+             <p>As AI transforms health and care, integrating Intelligent User Interfaces (IUI) in wellness
+                        applications offers substantial opportunities and challenges. This workshop brings together
+                        experts from HCI, AI, healthcare, and related fields to explore how IUIs can enhance long-term
+                        engagement, personalization, and trust in health systems. Emphasis is on interdisciplinary
+                        approaches to create systems that are advanced, responsive to user needs, mindful of context,
+                        ethics, and privacy. Through presentations, discussions, and collaborative sessions,
+                        participants will address key challenges and propose solutions to drive health IUI innovation.
+                    </p>
+                    
+            <div class="alert alert-info" role="note"><strong>Co‑located with ACM IUI 2026</strong> — March 23–26, 2026 • Paphos, Cyprus.</div>
+          </div>
+          <div class="col-lg-5">
+            <img class="img-fluid rounded border" loading="lazy" width="1200" height="800" src="https://iui.hosting.acm.org/2026/wp-content/uploads/2023/01/311798878_610168327301136_8147321425156353618_n.jpg" alt="Paphos coastline in Cyprus." />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+            <div>
+                <h2>Objectives</h2>
+                <p>
+                    This workshop aims to address critical challenges in designing human-centered, intelligent
+                    interfaces for health and wellness applications. Key issues include fostering long-term user
+                    engagement, personalizing experiences to meet individual needs, and building trust in AI-driven
+                    systems. Health IUIs must serve diverse stakeholders — patients managing chronic conditions,
+                    clinicians making informed decisions, and caregivers supporting loved ones — while operating in
+                    sensitive contexts where errors can have serious consequences.
+                </p>
+                <img class="w-75 green-border d-block mx-auto my-5" src="img/topics.jpeg">
+                <p>
+                    Our goal is to bring together an interdisciplinary community of researchers and practitioners from
+                    fields such as human-computer interaction, artificial intelligence, healthcare, psychology, and
+                    rehabilitation sciences. By fostering collaboration across these disciplines, we aim to explore
+                    innovative solutions that balance technical advancements with user needs and ethical considerations.
+                </p>
+                <p>
+                    The workshop will provide a platform for participants to share research findings, discuss emerging
+                    challenges, and identify opportunities for innovation in health IUIs. Through presentations and
+                    extended discussions, we aim to generate actionable insights that can guide future research and
+                    development efforts. By focusing on user-centered design principles and ethical AI integration, this
+                    workshop aims to contribute meaningfully to the advancement of health technologies that are both
+                    intelligent and empathetic to user needs.
+                </p>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CFP -->
+    <section id="cfp" class="section-pad bg-body-tertiary">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-7">
+            <h2 class="h1 mb-3">Call for Papers</h2>
+            <p>We invite <strong>full papers</strong> (max 16 pages excl. refs) and <strong>short papers</strong> (max 8 pages excl. refs), 
+              one‑column CEURART format. We welcome research, system, dataset, position, and replication papers. 
+              All submissions are peer‑reviewed and will follow ACM IUI workshop publication standards. Accepted papers will be published as part 
+        of the Joint Proceedings of the ACM IUI 2026 Workshops at CEUR: https://ceur-ws.org/. Last year proceedings can be found here: <a href="https://ceur-ws.org/Vol-3957/">https://ceur-ws.org/Vol-3957/  </a></p>
+            <ul>
+              <li>English, PDF, one‑column CEURART style</li>
+              <li>Include author names, affiliations, and contact emails</li>
+              <li>Optional: links to demos, data, or code</li>
+              <li>Original work; not under review elsewhere</li>
+            </ul>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-brand" href="https://easychair.org/conferences/?conf=healthiui26" target="_blank" rel="noopener">Submit via EasyChair</a>
+              <a class="btn btn-outline-secondary" href="https://easychair.org/cfp/healthiui26" target="_blank" rel="noopener">CFP on EasyChair</a>
+              <a class="btn btn-outline-primary" id="downloadCFP" href="https://healthiui.github.io/2026/img/cfp.md" download>Download CFP (text)</a>
+            </div>
+            <p class="mt-3 small text-muted">Templates: CEURART style <a href="https://ceur-ws.org/Vol-XXX/CEURART.zip" target="_blank" rel="noopener">Proceedings (1‑column)</a>.</p>
+          </div>
+          <div class="col-lg-5">
+            <div class="p-3 border rounded-3">
+              <h3 class="h5">Key dates (AoE)</h3>
+              <ul class="list-group" id="datesList">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Submission deadline</div>
+                    <small class="text-muted" data-date-display="submission"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="submission"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Notification</div>
+                    <small class="text-muted" data-date-display="notification"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="notification"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Camera‑ready</div>
+                    <small class="text-muted" data-date-display="camera"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="camera"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Workshop day</div>
+                    <small class="text-muted" data-date-display="workshop"></small>
+                  </div>
+                  <span class="badge text-bg-success" data-countdown="workshop"></span>
+                </li>
+              </ul>
+              <div class="mt-3 small">Time zone: <span class="badge rounded-pill text-bg-light">Anywhere on Earth (AoE)</span></div>
+            </div>
+          </div>
+        </div>
+              
+      </div>
+
+    </section>
+
+    <!-- Topics of Interest -->
+    <section id="topics" class="section-pad">
+      <div class="container">
+        <h2 class="h1 mb-4">Topics of Interest</h2>
+    <p>The workshop aims to explore a diverse range of topics at the intersection of intelligent user interfaces and
+        health. By bringing together researchers and practitioners, we seek to address key challenges and opportunities
+        in designing intelligent, user-centered health technologies. The topics of interest include, but are not limited
+        to:</p>
+            <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-heart-pulse" style="font-size: 2rem;"></i> <!-- Icon for Personalized Health -->
+                        <h5 class="card-title mt-2">Personalized Health Interventions</h5>
+                        <p class="card-text">AI-driven personalized health recommendations based on individual data and
+                            behaviors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-lungs" style="font-size: 2rem;"></i> <!-- Icon for Diagnostics -->
+                        <h5 class="card-title mt-2">AI-Augmented Diagnostics</h5>
+                        <p class="card-text">Enhancing diagnostics and treatment recommendations with AI support.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-universal-access" style="font-size: 2rem;"></i> <!-- Icon for Accessibility -->
+                        <h5 class="card-title mt-2">Assistive Technologies</h5>
+                        <p class="card-text">AI-driven interfaces for improved accessibility and support for
+                            disabilities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people" style="font-size: 2rem;"></i> <!-- Icon for Collaboration -->
+                        <h5 class="card-title mt-2">Human-AI Collaboration</h5>
+                        <p class="card-text">Optimizing teamwork between healthcare professionals and AI systems.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-emoji-smile" style="font-size: 2rem;"></i> <!-- Icon for Behavioral Health -->
+                        <h5 class="card-title mt-2">Behavioral Health Support</h5>
+                        <p class="card-text">Applications supporting mental health, cognitive function, and wellness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-watch" style="font-size: 2rem;"></i> <!-- Icon for Wearable Monitoring -->
+                        <h5 class="card-title mt-2">Wearable Health Monitoring</h5>
+                        <p class="card-text">Interfaces for collecting and interpreting data from wearables and sensors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-chat-square-dots" style="font-size: 2rem;"></i>
+                        <!-- Icon for Engagement & Education -->
+                        <h5 class="card-title mt-2">Patient Engagement & Education</h5>
+                        <p class="card-text">Intelligent tools promoting health literacy and active patient involvement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-lock" style="font-size: 2rem;"></i> <!-- Icon for Ethics -->
+                        <h5 class="card-title mt-2">Ethics & Societal Implications</h5>
+                        <p class="card-text">Exploring privacy, bias, and trust issues in intelligent health interfaces.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-activity" style="font-size: 2rem;"></i> <!-- Icon for Rehabilitation -->
+                        <h5 class="card-title mt-2">Rehabilitation Technologies</h5>
+                        <p class="card-text">AI-powered tools for personalized rehabilitation and recovery tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- <div class="row g-4">
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-heart-pulse fs-3"></i><h3 class="h5 mt-2">Personalized Health Interventions</h3><p class="mb-0 muted">Modeling, adaptation, and evaluation for long‑term adherence.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-robot fs-3"></i><h3 class="h5 mt-2">Human‑AI Collaboration</h3><p class="mb-0 muted">Decision support, copilots, and safety in clinical workflows.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-shield-lock fs-3"></i><h3 class="h5 mt-2">Ethics, Privacy, & Trust</h3><p class="mb-0 muted">Bias, explainability, consent, and governance in health IUIs.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-watch fs-3"></i><h3 class="h5 mt-2">Wearables & Sensing</h3><p class="mb-0 muted">Edge/ambient sensing, data quality, feedback design.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-emoji-smile fs-3"></i><h3 class="h5 mt-2">Behavioral & Mental Health</h3><p class="mb-0 muted">Support, safety planning, and equitable access.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-diagram-3 fs-3"></i><h3 class="h5 mt-2">Data, Datasets, & Replication</h3><p class="mb-0 muted">Benchmarks, artifacts, and reproducible pipelines.</p></div></div></div>
+        </div> -->
+      </div>
+    </section>
+    <!-- Dates -->
+    <section id="dates" class="section-pad bg-body-tertiary">
+      <div class="container">
+        <h2 class="h1 mb-3">Important Dates (AoE)</h2>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-3"><div class="p-3 border rounded-3 h-100"><div class="fw-semibold">Submission deadline</div><div class="text-muted" id="dateSubmissionDisp"></div><div class="small"><span class="badge text-bg-primary" id="dateSubmissionCD"></span></div></div></div>
+          <div class="col-md-6 col-lg-3"><div class="p-3 border rounded-3 h-100"><div class="fw-semibold">Notification</div><div class="text-muted" id="dateNotificationDisp"></div><div class="small"><span class="badge text-bg-primary" id="dateNotificationCD"></span></div></div></div>
+          <div class="col-md-6 col-lg-3"><div class="p-3 border rounded-3 h-100"><div class="fw-semibold">Camera‑ready</div><div class="text-muted" id="dateCameraDisp"></div><div class="small"><span class="badge text-bg-primary" id="dateCameraCD"></span></div></div></div>
+          <div class="col-md-6 col-lg-3"><div class="p-3 border rounded-3 h-100"><div class="fw-semibold">Workshop day</div><div class="text-muted" id="dateWorkshopDisp"></div><div class="small"><span class="badge text-bg-success" id="dateWorkshopCD"></span></div></div></div>
+        </div>
+      </div>
+    </section>
+    <!-- Program Summary (placeholder) -->
+    <section id="program" class="section-pad bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <h2 class="h1 m-0">Program (TBD)</h2>
+          <!-- <a class="btn btn-outline-secondary btn-sm" href="https://docs.google.com" target="_blank" rel="noopener"><i class="bi bi-table"></i> Full schedule (Google Sheet)</a>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Opening & Keynote</div><span class="text-muted">09:00–10:00</span></div><p class="mb-0 text-muted">Welcome, context setting, and keynote address.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Paper Session I</div><span class="text-muted">10:00–11:00</span></div><p class="mb-0 text-muted">Personalization and engagement.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Demo & Posters</div><span class="text-muted">11:00–12:00</span></div><p class="mb-0 text-muted">Hands‑on systems and datasets.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Panel & Closing</div><span class="text-muted">12:00–13:00</span></div><p class="mb-0 text-muted">Challenges & roadmap for 2026–2027.</p></div></div></div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- Organizers & PC (+ PC signup) -->
+    <section id="pc" class="section-pad">
+      <div class="container">
+        <h2 class="h1 mb-4">Organizers & Program Committee</h2>
+
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                  <h3 class="h5 m-0">Program Committee (partial)</h3>
+                  <a class="btn btn-sm btn-brand" href="mailto:healthiuiworkshop@gmail.com?subject=PC%20signup%20—%20HealthIUI%202026&body=Name%3A%20%0AAffiliation%3A%20%0AAreas%20of%20expertise%3A%20%0AGoogle%20Scholar/DBLP%3A%20" aria-label="Sign up for Program Committee via email">Sign up for PC</a>
+                </div>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+                  <div class="col"><div class="p-2 border rounded">Aditya Bhattacharya — KU Leuven</div></div>
+                  <div class="col"><div class="p-2 border rounded">Alain D. Starke — University of Amsterdam</div></div>
+                  <div class="col"><div class="p-2 border rounded">Bart Knijnenburg — Clemson University</div></div>
+                  <div class="col"><div class="p-2 border rounded">Federica Cena — University of Torino</div></div>
+                  <div class="col"><div class="p-2 border rounded">Hanna Hauptmann — Utrecht University</div></div>
+                  <div class="col"><div class="p-2 border rounded">Matthew Jörke — Stanford University</div></div>
+                  <div class="col"><div class="p-2 border rounded">Maxwell Szymanski — KU Leuven</div></div>
+                  <div class="col"><div class="p-2 border rounded">Min Lee — SMU</div></div>
+                  <div class="col"><div class="p-2 border rounded">Shatha Degachi — TU Delft</div></div>
+                </div>
+                <p class="small text-muted mt-2 mb-0">We value diverse expertise and backgrounds.</p>
+
+        </div>
+      </div>
+
+<!-- Add top margin here -->
+<div class="container mt-5">
+
+        <div class="container">
+                <h3 class="h5">Organizers</h3>
+            <div class="row text-center justify-content-center">
+                <!-- Organizer 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card green-border" style="height: 250px">
+                        <div class="card-body">
+                            <img src="img/peter.png" alt="Organizer 1" class="rounded-circle mb-3 green-border"
+                                style="width: 100px; height: 100px; object-fit: cover;">
+                            <h5 class="card-title fw-bold">Peter Brusilovsky</h5>
+                            <p class="card-text">University of Pittsburgh</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Organizer 2 -->
+
+                <!-- Organizer 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card green-border" style="height: 250px">
+                        <div class="card-body">
+                            <img src="img/behnam.jpeg" alt="Organizer 3" class="rounded-circle mb-3  green-border"
+                                style="width: 100px; height: 100px; object-fit: cover;">
+                            <h5 class="card-title fw-bold">Behnam Rahdari</h5>
+                            <p class="card-text">Stanford University</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Organizer 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card green-border" style="height: 250px;">
+                        <div class="card-body">
+                            <img src="img/shriti.png" alt="Organizer 4" class="rounded-circle mb-3  green-border"
+                                style="width: 100px; height: 100px; object-fit: cover;">
+                            <h5 class="card-title fw-bold">Shriti Raj</h5>
+                            <p class="card-text">Stanford University</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Organizer 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card green-border" style="height: 250px;">
+                        <div class="card-body">
+                            <img src="img/helma.png" alt="Organizer 5" class="rounded-circle mb-3  green-border"
+                                style="width: 100px; height: 100px; object-fit: cover;">
+                            <h5 class="card-title fw-bold">Helma Torkamaan</h5>
+                            <p class="card-text">TU Delft</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+    </section>
+
+
+
+    <!-- Venue -->
+    <section id="venue" class="section-pad">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="h1 mb-3">Venue & Travel</h2>
+            <p>HealthIUI 2026 is <strong>co‑located with ACM IUI 2026</strong> at the <strong>Coral Beach Hotel & Resort</strong>, Paphos, Cyprus.</p>
+            <div class="d-flex gap-2 flex-wrap mt-2">
+              <a class="btn btn-outline-primary" href="https://iui.acm.org/2026" target="_blank" rel="noopener"><i class="bi bi-link-45deg"></i> ACM IUI 2026</a>
+              <a class="btn btn-outline-secondary" href="https://www.coral.com.cy/" target="_blank" rel="noopener"><i class="bi bi-geo"></i> Coral Beach Hotel & Resort</a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <!-- <img class="img-fluid rounded" loading="lazy" width="1200" height="800" src="https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop" alt="Resort and seaside representing the Paphos venue." /> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-pad">
+      <div class="container">
+        <h2 class="h1 mb-3">Contact</h2>
+        <p>Email: <a href="mailto:healthiuiworkshop@gmail.com">healthiuiworkshop@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-3 border-top bg-body">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <small>© <span id="year"></span> HealthIUI @ ACM IUI</small>
+      <small class="text-muted">No tracking cookies.</small>
+    </div>
+  </footer>
+
+  <!-- App data: set 2026 dates here (AoE). -->
+  <script>
+    const DATES = {
+      submission: '2025-12-19T23:59:59-12:00',
+      notification: '2026-02-02T23:59:59-12:00',
+      camera: '2026-02-16T23:59:59-12:00',
+      workshop: '2026-03-23T09:00:00+02:00' // Cyprus local time (EET; adjust if DST)
+    };
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
+  <!-- Minimal app logic -->
+  <script>
+    (function(){
+      const pad = (n)=> n.toString().padStart(2,'0');
+      const fmt = (iso)=> new Date(iso).toLocaleString(undefined,{year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
+      const daysLeft = (iso)=>{ const now=new Date(); const t=new Date(iso); const diff=Math.ceil((t-now)/(1000*60*60*24)); return diff>0?`${diff} day${diff===1?'':'s'} left`:(diff===0?'Today!':'Passed'); };
+
+       // Populate top bar deadline
+      const deadlineTop = document.getElementById('deadlineTop');
+      if (deadlineTop) deadlineTop.textContent = new Date(DATES.submission).toLocaleDateString(undefined,{year:'numeric', month:'short', day:'numeric'});
+
+
+      // CFP card + Dates section
+      const keys=['submission','notification','camera','workshop'];
+      keys.forEach(k=>{
+        document.querySelectorAll(`[data-date-display="${k}"]`).forEach(el=> el.textContent = fmt(DATES[k]));
+        document.querySelectorAll(`[data-countdown="${k}"]`).forEach(el=> el.textContent = daysLeft(DATES[k]));
+      });
+      const mapIds=[['dateSubmissionDisp','dateSubmissionCD','submission'],['dateNotificationDisp','dateNotificationCD','notification'],['dateCameraDisp','dateCameraCD','camera'],['dateWorkshopDisp','dateWorkshopCD','workshop']];
+      mapIds.forEach(([dId,cId,key])=>{ const d=document.getElementById(dId); const c=document.getElementById(cId); if(d) d.textContent=fmt(DATES[key]); if(c) c.textContent=daysLeft(DATES[key]); });
+
+      // Add-to-calendar (ICS)
+      const ics = ()=>{ const start=new Date(DATES.workshop); const end=new Date(start.getTime()+4*60*60*1000); const toICS=(d)=>`${d.getUTCFullYear()}${pad(d.getUTCMonth()+1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`; return `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//HealthIUI//2026//EN
+BEGIN:VEVENT
+UID:${Date.now()}@healthiui
+DTSTAMP:${toICS(new Date())}
+DTSTART:${toICS(start)}
+DTEND:${toICS(end)}
+SUMMARY:HealthIUI 2026 Workshop
+DESCRIPTION:On-site workshop co-located with ACM IUI 2026.
+LOCATION:Coral Beach Hotel & Resort, Paphos, Cyprus
+END:VEVENT
+END:VCALENDAR`; };
+      document.getElementById('addToCalendarBtn')?.addEventListener('click', (e)=>{ e.preventDefault(); const blob=new Blob([ics()],{type:'text/calendar'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='HealthIUI-2026.ics'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500); });
+
+      // Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Refresh countdowns daily
+      setInterval(()=>{
+        keys.forEach(k=> document.querySelectorAll(`[data-countdown="${k}"]`).forEach(el=> el.textContent = daysLeft(DATES[k])) );
+        mapIds.forEach(([_,cId,key])=>{ const c=document.getElementById(cId); if(c) c.textContent = daysLeft(DATES[key]); });
+      }, 24*60*60*1000);
+    })();
+  </script>
+</body>
+</html>

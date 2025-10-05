@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SIG‑AI-ACT — Translating the EU AI Act into Technical Requirements</title>
+  <meta name="description" content="Special Interest Group on Translating the EU AI Act into Technical Requirements — Bridging regulation and technical design for trustworthy AI.
+    A transdisciplinary initiative to turn the EU AI Act’s principles into concrete, testable technical requirements and practices.
+" />
+  <link rel="canonical" href="https://sig-ai-act.github.io/" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="SIG‑AI-ACT — Translating the EU AI Act into Technical Requirements" />
+  <meta property="og:description" content="Bridging legal obligations and technical practice for trustworthy, compliant AI systems. Focus: fairness, explainability, robustness, privacy; starting with healthcare." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sig-ai-act.github.io/" />
+  <meta property="og:image" content="https://example.org/og-sigAI-ACT.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+  :root{
+    /* Theme (TU Delft–adjacent palette provided by you) */
+    --c-primary:#00A6D6; /* sky / cyan 00A6D6*/
+    --c-navy:#0C2340;    /* deep navy 0C2340*/
+    --c-crimson:#00A6D6; /* accent red A50034*/
+    --c-amber:#FFB81C;   /* accent yellow FFB81C*/
+    
+
+    --bg-soft: linear-gradient(180deg, rgba(12,35,64,.04), transparent);
+    --nav-offset: 86px;
+  }
+
+  html{ scroll-behavior:smooth; scroll-padding-top: var(--nav-offset);}  
+  body{ font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial; }
+  .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;}
+  .skip-link:focus{left:0;top:0;width:auto;height:auto;background:#000;color:#fff;padding:.5rem 1rem;z-index:2000;}
+
+  /* Navbar */
+  .navbar{ background: var(--bg-soft); }
+  .navbar-brand{ font-weight:800; letter-spacing:.2px; color:var(--c-navy); text-transform:none; }
+  .nav-link{ text-transform:uppercase; font-weight:700; color: var(--c-primary); border-radius:.5rem; padding:.5rem .85rem; }
+  .nav-link:hover, .nav-link:focus{ background: var(--c-primary); color:#fff; }
+  .nav-link.active{   background: var(--c-primary); color:#fff; }
+  .nav-link.active:visited {
+  background: var(--c-primary) !important;
+  color: #fff !important;
+}
+
+  /* Buttons */
+  .btn-brand{ background: var(--c-crimson); border-color: var(--c-crimson); color:#fff; box-shadow:0 6px 16px rgba(165,0,52,.16); }
+  .btn-brand:hover{ background: #7f0027; border-color:#7f0027; color:#fff; }
+
+  .btn-ghost{ border:2px solid var(--c-amber); color: var(--c-navy); }
+  .btn-ghost:hover{ background: var(--c-amber); color:#111; }
+  .btn-outline-yellow {
+  border: 2px solid var(--c-amber);      /* your defined yellow #FFB81C */
+  color: var(--c-amber);
+  background: transparent;
+}
+
+/* Base solid yellow */
+.btn.btn-amber{
+  background: var(--c-amber);
+  border-color: var(--c-amber);
+  color: #111;
+  box-shadow: 0 6px 16px rgba(255,184,28,.25);
+}
+
+/* Darker on hover/focus */
+@supports (color: color-mix(in srgb, black, white)) {
+  .btn.btn-amber:hover,
+  .btn.btn-amber:focus {
+    background: color-mix(in srgb, var(--c-amber) 85%, black 15%);
+    border-color: color-mix(in srgb, var(--c-amber) 85%, black 15%);
+    color: #111;
+  }
+  /* Pressed/active */
+  .btn.btn-amber:active,
+  .btn.btn-amber.active,
+  .show > .btn.btn-amber.dropdown-toggle {
+    background: color-mix(in srgb, var(--c-amber) 75%, black 25%);
+    border-color: color-mix(in srgb, var(--c-amber) 75%, black 25%);
+    color: #111;
+  }
+  .btn.btn-amber:focus-visible{
+    box-shadow: 0 0 0 .2rem rgba(255,184,28,.35);
+  }
+}
+
+/* Fallback when color-mix() isn't supported */
+@supports not (color: color-mix(in srgb, black, white)) {
+  .btn.btn-amber:hover,
+  .btn.btn-amber:focus { background: #E0A913; border-color: #E0A913; color:#111; }
+  .btn.btn-amber:active,
+  .btn.btn-amber.active,
+  .show > .btn.btn-amber.dropdown-toggle { background: #C99711; border-color:#C99711; color:#111; }
+  .btn.btn-amber:focus-visible{ box-shadow: 0 0 0 .2rem rgba(255,184,28,.35); }
+}
+
+/* Keep your outline-yellow fill-on-hover */
+.btn-outline-yellow:hover,
+.btn-outline-yellow:focus {
+  background: var(--c-amber);
+  border-color: var(--c-amber);
+  color: #111;
+}
+
+/*
+  <!-- .hero::before{ content:""; position:absolute; inset:0; background:
+      radial-gradient(1100px 500px at 10% -10%, rgba(0,166,214,.40), transparent),
+      radial-gradient(800px 400px at 90% 10%, rgba(165,0,52,.35), transparent),
+      linear-gradient(180deg, rgba(12,35,64,.85), rgba(12,35,64,.55)),
+      url('https://images.unsplash.com/photo-1558344533-34b6f838c8a2?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; } -->
+*/
+
+  /* Hero */
+  .hero{ position:relative; color:#fff; min-height:56vh; display:grid; place-items:center; overflow:hidden; }
+
+  .hero::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.15)), url('img/workshop_header.png') center/cover no-repeat;  z-index: 0;}
+  .hero > .content{ position:relative; z-index:1; }
+  .hero .kicker{ letter-spacing:.08em; text-transform:uppercase; font-weight:700; color: var(--c-amber); }
+  .hero h1 {
+  color: var(--c-primary); /* which is already #00A6D6 */
+}
+
+  .section-pad{ padding:2rem 0; }
+  .muted{ opacity:.9; }
+  .tag{ display:inline-block; background:rgba(255,184,28,.18); color:var(--c-navy); border:1px solid rgba(255,184,28,.5); padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
+
+  .card-accent{ border-left:4px solid var(--c-crimson); }
+  .accent-border{ border:2px solid rgba(12,35,64,.08); }
+  .bg-stripe{ background: repeating-linear-gradient(-45deg, rgba(12,35,64,.03), rgba(12,35,64,.03) 8px, transparent 8px, transparent 16px); }
+
+  /* Timeline */
+  .milestone{ border-left:3px solid var(--c-amber); padding-left:1rem; margin-left:.25rem; }
+
+  /* Footer */
+  footer small a{ color:inherit; }
+
+  @media (max-width: 991.98px){ :root{ --nav-offset:68px; } }
+h1, h2, h3{ color: var(--c-navy); }
+a{ color: var(--c-primary); }
+a:hover{ color:#0287ad; }
+
+.organizer-link {
+    text-decoration: none;
+    color: inherit;
+    transition: text-decoration 0.2s ease;
+}
+
+.organizer-link:hover {
+    text-decoration: underline;
+}
+a[href^="mailto:"] {
+  display: inline-block;
+  background-color: var(--c-primary);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem; /* rounded corners */
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+a[href^="mailto:"]:hover {
+  background-color: #0287ad; /* darker cyan on hover */
+  color: white;
+  text-decoration: none;
+}
+
+
+</style>
+
+<!-- JSON-LD: Project/Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Project",
+  "name": "SIG‑AI-ACT: Special Interest Group on Translating the EU AI Act into Technical Requirements",
+  "url": "https://example.org/sig-AI-ACT",
+  "keywords": ["EU AI Act","trustworthy AI","fairness","explainability","robustness","privacy","governance","healthcare"],
+  "startDate": "2025-01-01",
+  "endDate": "2027-12-31",
+  "sponsor": {"@type":"Organization","name":"TU Delft"},
+  "member": [
+    {"@type":"Person","name":"Dr. Megha Khosla","affiliation":"EEMCS"},
+    {"@type":"Person","name":"Dr. Masoud Mansoury","affiliation":"EEMCS"},
+    {"@type":"Person","name":"Dr. Helma Torkamaan","affiliation":"TPM"}
+  ],
+  "areaServed":"EU"
+}
+</script>
+</head>
+<body >
+  <a href="#main" class="skip-link">Skip to Content</a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom" data-bs-theme="light" aria-label="Primary">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="https://sig-ai-act.github.io">
+        <!-- <span class="rounded-circle d-inline-flex align-items-center justify-content-center" style="width:40px;height:40px;background:var(--c-crimson);color:#fff"><i class="bi bi-shield-check"></i></span> -->
+        <img src="img/icon.png" alt=""  height="50" class="brand-icon" />
+        <strong>SIG‑AI-ACT</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About the Event</a></li>
+          <li class="nav-item"><a class="nav-link" href="#scope">Scope</a></li>
+          <li class="nav-item"><a class="nav-link" href="#people">People</a></li>
+          <li class="nav-item"><a class="nav-link" href="#program">Program</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://sig-ai-act.github.io/index.html#join">Join SIG-AI-ACT</a></li>
+
+
+          
+
+        </ul>
+        <div class="ms-lg-3 d-flex gap-2">
+            <a class="btn btn-brand fw-bold" href="https://sig-ai-act.github.io/index.html">SIG-AI-ACT Main Page</a>
+          </div>
+        <!-- <div class="ms-lg-3 d-flex gap-2">
+          <a class="btn btn-sm btn-brand" href="#join">Current Workshop</a>
+        </div> -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="content container text-center">
+      <div class="kicker mb-2">Welcome to</div>
+      <h1 class="display-6 fw-bold"style="color: #0C2340;">SIG‑AI-ACT Kickoff Event</h1>
+      <p class="lead mb-3">Special Interest Group on Translating the EU AI Act into Technical Requirements</p>
+      <p class="mb-3">Bridging regulation and technical design for trustworthy AI.</p>
+      <div class="d-flex flex-wrap gap-2 justify-content-center">
+        <a class="btn btn-lg btn-outline-yellow" href="#cfp"><i class="bi bi-file-earmark-text me-1"></i> Call for Participation</a>
+        <a class="btn btn-lg btn-outline-yellow" href="https://sig-ai-act.github.io/index.html#join"><i class="bi bi-person-plus me-1"></i> Get involved</a>
+      </div>
+      <div class="mt-3">
+        <span class="badge rounded-pill text-bg-light text-dark me-2"><i class="bi bi-geo-alt me-1"></i> Delft, The Netherlands</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- About -->
+    <section id="about" class="section-pad">
+      <div class="container">
+    <div class="row g-4 align-items-stretch">
+            <h2 class="h1 mb-3" style="color: var(--c-crimson);">About the kickoff event</h2>
+            <p class="mb-3">Special Interest Group (SIG) AI-ACT is a transdisciplinary initiative aimed at translating the principles of the EU AI Act—such as fairness, transparency, privacy, and robustness—into <strong>technical requirements</strong> and <strong>design practices</strong> for AI systems.</p>
+            <p class="mb-3">The SIG is structured into <strong>modular subgroups</strong> on key topics—<em>risk classification</em>, <em>transparency</em>, <em>human oversight</em>, <em>privacy</em>, and <em>data governance</em>—working toward concrete outputs like guidelines, evaluation methods, and tooling.</p>
+            <p class="mb-3">Founded by researchers at TU Delft, SIG‑AI-ACT seeks to <strong>operationalize abstract legal and ethical principles</strong> through actionable, value‑driven specifications, targeting sensitive and high‑impact domains.</p>
+            <div class="alert alert-info small" role="note">
+              <strong>Mission:</strong> To bridge the gap between legal obligations and technical practice in high‑risk AI by building tools, frameworks, and design methodologies grounded in the EU AI Act.
+            </div>
+   
+         
+      </div>
+
+      
+ <div class="mt-3">
+          <h3 class="h5 mb-2" style="color: var(--c-crimson);">What We Do</h3>
+          <p class="mb-2">SIG-TREQ operates as a modular, collaborative network involving academic researchers, practitioners, legal experts, policy experts, and industry partners. Core activities include:</p>
+          <ul class="mb-0">
+            <li>Working groups bringing together experts on fairness, transparency, robustness, and privacy.</li>
+            <li>Regular sessions, reading groups, and interdisciplinary workshops.</li>
+            <li>Case studies with institutions and industry partners (e.g., healthcare).</li>
+            <li>A living technical specification that evolves with legal and technological shifts.</li>
+            <li>Evaluation frameworks to measure values like fairness and transparency in practice.</li>
+            <li>Governance tools for developers, auditors, and regulators.</li>
+            <li>Public consultations to prototype and reflect real-world needs.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    
+        <!-- Topics of Interest -->
+ <section id="scope" class="section-pad">
+      <div class="container">
+        <h2 class="h1 mb-4" style="color: var(--c-crimson);">Scope and Topics of Interest</h2>
+    <p>SIG‑AI-ACT operates through focused subgroups that span theory, implementation, and evaluation.</p>
+            <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-bar-chart-line me-1" style="font-size: 2rem;"></i> 
+                        <h5 class="card-title mt-2">Risk Classification</h5>
+                        <p class="card-text">Mapping system categories and obligations to risk levels; scoping high‑risk systems.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-eye me-1" style="font-size: 2rem;"></i> <!-- Icon for Diagnostics -->
+                        <h5 class="card-title mt-2">Transparency</h5>
+                        <p class="card-text">Documentation, model & data cards, evidence logs, and communication duties.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-person-check me-1" style="font-size: 2rem;"></i> <!-- Icon for Accessibility -->
+                        <h5 class="card-title mt-2">Human Oversight</h5>
+                        <p class="card-text">Designing effective oversight, intervention points, and fallback modes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people" style="font-size: 2rem;"></i> <!-- Icon for Collaboration -->
+                        <h5 class="card-title mt-2">Human-AI Collaboration</h5>
+                        <p class="card-text">Optimizing teamwork between professionals and AI systems.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-lock me-1" style="font-size: 2rem;"></i> <!-- Icon for Behavioral Health -->
+                        <h5 class="card-title mt-2">Privacy</h5>
+                        <p class="card-text">AData minimization, PETs, purpose limitation, DPIAs, access control, logging.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card green-border">
+                    <div class="card-body text-center">
+                        <i class="bi bi-watch" style="font-size: 2rem;"></i> <!-- Icon for Wearable Monitoring -->
+                        <h5 class="bi bi-database-gear me-1">Data Governance<</h5>
+                        <p class="card-text">Datasets, lineage, quality controls, bias assessments, and retention policies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <!-- <div class="row g-4">
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-heart-pulse fs-3"></i><h3 class="h5 mt-2">Personalized Health Interventions</h3><p class="mb-0 muted">Modeling, adaptation, and evaluation for long‑term adherence.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-robot fs-3"></i><h3 class="h5 mt-2">Human‑AI Collaboration</h3><p class="mb-0 muted">Decision support, copilots, and safety in clinical workflows.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-shield-lock fs-3"></i><h3 class="h5 mt-2">Ethics, Privacy, & Trust</h3><p class="mb-0 muted">Bias, explainability, consent, and governance in health IUIs.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-watch fs-3"></i><h3 class="h5 mt-2">Wearables & Sensing</h3><p class="mb-0 muted">Edge/ambient sensing, data quality, feedback design.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-emoji-smile fs-3"></i><h3 class="h5 mt-2">Behavioral & Mental Health</h3><p class="mb-0 muted">Support, safety planning, and equitable access.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card topic-card h-100 border-0 shadow-sm"><div class="card-body"><i class="bi bi-diagram-3 fs-3"></i><h3 class="h5 mt-2">Data, Datasets, & Replication</h3><p class="mb-0 muted">Benchmarks, artifacts, and reproducible pipelines.</p></div></div></div>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- Members & Contributors -->
+     <section id="people" class="section-pad bg-body-tertiary">
+  <div class="container">
+    <h2 class="h1 mb-4" style="color: var(--c-crimson);">People</h2>
+
+    <h3 class="h5">Organizers</h3>
+    <div class="row text-center justify-content-center align-items-stretch g-4">
+
+      <!-- Organizer 1 -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card green-border h-100">
+          <div class="card-body text-center d-flex flex-column">
+            <img src="img/megha.png" alt="Dr. Megha Khosla" class="rounded-circle mb-3 green-border"
+                 style="width: 150px; height: 150px; object-fit: cover; align-self:center;">
+            <h5 class="card-title fw-bold mb-1">
+              <a href="https://khosla.github.io/" target="_blank" rel="noopener noreferrer" class="organizer-link">
+                Dr. Megha Khosla
+              </a>
+            </h5>
+            <p class="card-text mb-1">TU Delft, EEMCS</p>
+            <p class="card-text text-muted small mt-auto">SIG-AI-ACT Coordinator</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Organizer 2 -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card green-border h-100">
+          <div class="card-body text-center d-flex flex-column">
+            <img src="img/masoud.png" alt="Dr. Masoud Mansoury" class="rounded-circle mb-3 green-border"
+                 style="width: 150px; height: 150px; object-fit: cover; align-self:center;">
+            <h5 class="card-title fw-bold mb-1">
+              <a href="https://masoudmansoury.github.io/" target="_blank" rel="noopener noreferrer" class="organizer-link">
+                Dr. Masoud Mansoury
+              </a>
+            </h5>
+            <p class="card-text mb-1">TU Delft, EEMCS</p>
+            <p class="card-text text-muted small mt-auto">SIG-AI-ACT Coordinator</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Organizer 3 -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card green-border h-100">
+          <div class="card-body text-center d-flex flex-column">
+            <img src="img/helma.png" alt="Dr. Helma Torkamaan" class="rounded-circle mb-3 green-border"
+                 style="width: 150px; height: 150px; object-fit: cover; align-self:center;">
+            <h5 class="card-title fw-bold mb-1">
+              <a href="https://torkamaan.eu/" target="_blank" rel="noopener noreferrer" class="organizer-link">
+                Dr. Helma Torkamaan
+              </a>
+            </h5>
+            <p class="card-text mb-1">TU Delft, TPM</p>
+            <p class="card-text text-muted small mt-auto">SIG-AI-ACT Coordinator</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Organizer 4 (example placeholder; change img/name/link as needed) -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card green-border h-100">
+          <div class="card-body text-center d-flex flex-column">
+            <img src="img/yanan.jpeg" alt="Organizer 4" class="rounded-circle mb-3 green-border"
+                 style="width: 150px; height: 150px; object-fit: cover; align-self:center;">
+            <h5 class="card-title fw-bold mb-1">
+              <a href="https://www.tudelft.nl/en/staff/yanan.xin/" target="_blank" rel="noopener noreferrer" class="organizer-link">
+                Dr. Yanan Xin
+              </a>
+            </h5>
+            <p class="card-text mb-1">TU Delft, CITG</p>
+            <p class="card-text text-muted small mt-auto">SIG-AI-ACT Member</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Members -->
+  
+
+
+  </div>
+</section>
+
+
+    <!-- Timeline -->
+  <section id="cfp" class="section-pad bg-body-tertiary">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-7">
+            <h2 class="h1 mb-3"style="color: var(--c-crimson);">Call for Participation</h2>
+            <p>tba</p>
+
+
+            <p class="mt-3 small text-muted">Templates: CEURART style <a href="https://ceur-ws.org/Vol-XXX/CEURART.zip" target="_blank" rel="noopener">Proceedings (1‑column)</a>.</p>
+          </div>
+          <div class="col-lg-5">
+            <div class="p-3 border rounded-3">
+              <h3 class="h5">Key dates (AoE)</h3>
+              <ul class="list-group" id="datesList">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Submission deadline</div>
+                    <small class="text-muted" data-date-display="submission"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="submission"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Notification</div>
+                    <small class="text-muted" data-date-display="notification"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="notification"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Camera‑ready</div>
+                    <small class="text-muted" data-date-display="camera"></small>
+                  </div>
+                  <span class="badge text-bg-primary" data-countdown="camera"></span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-semibold">Workshop day</div>
+                    <small class="text-muted" data-date-display="workshop"></small>
+                  </div>
+                  <span class="badge text-bg-success" data-countdown="workshop"></span>
+                </li>
+              </ul>
+              <div class="mt-3 small">Time zone: <span class="badge rounded-pill text-bg-light">Anywhere on Earth (AoE)</span></div>
+            </div>
+          </div>
+        </div>
+              
+      </div>
+
+    </section>
+
+ <!-- Program Summary (placeholder) -->
+    <section id="program" class="section-pad bg-body-tertiary">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+          <h2 class="h1 m-0"style="color: var(--c-crimson);">Program (TBD)</h2>
+          <!-- <a class="btn btn-outline-secondary btn-sm" href="https://docs.google.com" target="_blank" rel="noopener"><i class="bi bi-table"></i> Full schedule (Google Sheet)</a>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Opening & Keynote</div><span class="text-muted">09:00–10:00</span></div><p class="mb-0 text-muted">Welcome, context setting, and keynote address.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Paper Session I</div><span class="text-muted">10:00–11:00</span></div><p class="mb-0 text-muted">Personalization and engagement.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Demo & Posters</div><span class="text-muted">11:00–12:00</span></div><p class="mb-0 text-muted">Hands‑on systems and datasets.</p></div></div></div>
+          <div class="col-md-6 col-lg-4"><div class="card h-100 border-0 shadow-sm"><div class="card-body"><div class="d-flex align-items-center justify-content-between"><div class="fw-semibold">Panel & Closing</div><span class="text-muted">12:00–13:00</span></div><p class="mb-0 text-muted">Challenges & roadmap for 2026–2027.</p></div></div></div>
+        </div> -->
+      </div>
+    </section>
+  
+  </main>
+
+  <footer class="py-3 border-top bg-body">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <small>© <span id="year"></span> SIG‑AI-ACT</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
+  <!-- App logic: budget totals & countdowns -->
+  <script>
+    (function(){
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Budget totals
+      const years = [2025, 2026, 2027];
+      const totals = {2025:0, 2026:0, 2027:0};
+      years.forEach(y=>{
+        document.querySelectorAll(`[data-y="${y}"]`).forEach(td=>{ totals[y]+= Number(td.textContent||0); });
+        const el = document.getElementById('t'+y);
+        if(el) el.textContent = '€'+ totals[y].toLocaleString('en-US');
+      });
+      const all = years.reduce((a,y)=> a+totals[y], 0);
+      const allEl = document.getElementById('tAll');
+      if(allEl) allEl.textContent = '€'+ all.toLocaleString('en-US');
+
+      // Countdown helper
+      const daysLeft = (iso)=>{ const now=new Date(); const t=new Date(iso); const diff=Math.ceil((t-now)/(1000*60*60*24)); return diff>0?`${diff} day${diff===1?'':'s'} left`:(diff===0?'Today!':'Passed'); };
+      document.querySelectorAll('[data-cd]').forEach(el=>{ el.textContent = daysLeft(el.getAttribute('data-cd')); });
+
+      // Next collaborative workshop: choose next March 15 at 09:00 Amsterdam
+      const nextWorkshopBadge = document.querySelector('[data-cd-nextworkshop]');
+      if(nextWorkshopBadge){
+        const now = new Date();
+        const year = (now.getMonth()>2) ? now.getFullYear()+1 : now.getFullYear();
+        const dt = new Date(Date.UTC(year, 2, 15, 8, 0, 0)); // 09:00 CET ≈ 08:00 UTC (approx; display is relative)
+        nextWorkshopBadge.textContent = daysLeft(dt.toISOString());
+      }
+
+      // Simple active nav highlighting on click (progressive enhancement)
+      document.querySelectorAll('.nav-link').forEach(a=>{
+        a.addEventListener('click', ()=>{
+          document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));
+          a.classList.add('active');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
